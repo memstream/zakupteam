@@ -7,7 +7,7 @@
 	<ul>
 		<?php foreach(R::findAll('favorite') as $f): ?>
 			<?php foreach(R::findAll('tender', ' tradedate >= ? AND id = ? AND tradedate IS NOT NULL ORDER BY tradedate ', [ date('Y-m-d H:i:s'), $f->tender_id ]) as $tender):?>
-				<li><a href="favorite.php#<?= _XSS($tender->n) ?>"><?= _XSS($tender->info) ?></a></li>
+				<li>[<?= substr($tender->tradedate, 0, -9) ?>] <a href="favorite.php#<?= _XSS($tender->n) ?>"><?= _XSS($tender->info) ?></a></li>
 			<?php endforeach; ?>
 		<?php endforeach; ?>
 	</ul>
