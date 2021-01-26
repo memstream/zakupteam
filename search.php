@@ -56,25 +56,7 @@ api_route(array(
 <?php 
 $result = zakupki_search($p, $i, $m, $n, $f);
 foreach($result['zakupki'] as $zakupka): ?>
-	<div class="tender">
-		<div class="header">
-			<span class="id"><a href="<?= $zakupka['href'] ?>"><?= $zakupka['id'] ?></a></span> |
-			<span class="price"><?= $zakupka['price'] ?></span>
-		</div>
-		<div class="subinfo">
-			<span class="type"><?= $zakupka['type'] ?></span> |
-			<span class="ending">Загрузка...</span>
-		</div>
-		<span class="info"><?= $zakupka['info'] ?></span><br>
-		<details class="docs">
-			<summary>Документы</summary>
-		</details>
-		<span class="org"><?= $zakupka['org'] ?></span>
-		</p>
-		<div>
-			<button class="btn_favorite" tid="<?= $zakupka['rid'] ?>"><img src="image/favorite.png">В избранное</button>
-		</div>
-	</div>
+	<?php include __DIR__ . '/php/p/zakupka.php'; ?>
 <?php endforeach; ?>
 <div class="pages">
 	Страницы: 

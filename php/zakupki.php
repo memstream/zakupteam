@@ -41,7 +41,7 @@ function zakupki_search($p, $i, $m, $n, $f) {
 		$type = str_replace('44-ФЗ ', '', trim($block->find('.registry-entry__header-top__title', 0)->plaintext));
 		if(strpos($type, 'Закрытый аукцион') !== false) continue;
 		$zakupka = array(
-			'id' => trim(mb_substr(trim($block->find('.registry-entry__header-mid__number a', 0)->plaintext), 1)),
+			'n' => trim(mb_substr(trim($block->find('.registry-entry__header-mid__number a', 0)->plaintext), 1)),
 			'price' => trim($block->find('.price-block__value', 0)->plaintext),
 			'info' => trim($block->find('.registry-entry__body-value', 0)->plaintext),
 			'org' => trim($block->find('.registry-entry__body-href a', 0)->plaintext),
@@ -49,10 +49,10 @@ function zakupki_search($p, $i, $m, $n, $f) {
 			'href' => $href
 		);
 		
-		$t = R::findOne('tender', ' n = ? ', [ $zakupka['id'] ]);
+		$t = R::findOne('tender', ' n = ? ', [ $zakupka['n'] ]);
 		if(!$t) {
 			$t = R::dispense('tender');
-			$t->n = $zakupka['id'];
+			$t->n = $zakupka['n'];
 			$t->price = $zakupka['price'];
 			$t->info = $zakupka['info'];
 			$t->org = $zakupka['org'];
@@ -61,7 +61,7 @@ function zakupki_search($p, $i, $m, $n, $f) {
 			R::store($t);
 		}
 		
-		$zakupka['rid'] = $t->id;
+		$zakupka['id'] = $t->id;
 		
 		array_push($zakupki, $zakupka);
 	}
