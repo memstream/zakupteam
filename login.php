@@ -1,4 +1,7 @@
 <?php require_once __DIR__ . '/php/p/base.php'; 
+	if(isset($_SESSION['auth'])) {
+		api_redirect('index.html', array(), false);
+	} 
 	api_route(array(
 		'@login#key,?to' => function($key, $to = null) {
 			if($key === KEY) {
