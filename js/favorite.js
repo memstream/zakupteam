@@ -40,9 +40,13 @@ function recalcTable(et, table) {
 		var v5 = parseFloat($(col5[i]).val() ? $(col5[i]).val() : 1);
 		sum += v4 * v5;
 	}
-	$(et).find('.formula').text(price + '-' + sum + '=' + (price - sum));
-	$(et).find('.profit').text(' +(' + (price - sum) + ')');
-	
+	if(sum) {
+		$(et).find('.formula').text(price + '-' + sum + '=' + (price - sum));
+		$(et).find('.profit').text(' +(' + (price - sum) + ')');
+	} else {
+		$(et).find('.formula').text('');
+		$(et).find('.profit').text('');
+	}
 	saveTable(et, table);
 }
 
