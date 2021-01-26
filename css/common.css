@@ -1,0 +1,306 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	background-color: #F0F0F0;
+	font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Roboto Condensed', sans-serif;
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+}
+
+a {
+	color: blue;
+}
+
+button {
+	display: flex;
+	align-items: center;
+}
+
+button img {
+	width: 1.5em;
+	margin-right: 0.5em;
+}
+
+.text-icon {
+	display: inline;
+}
+
+.file {
+	display: flex;
+	align-items: center;
+	margin-left: 0.5em;
+}
+
+#header {
+	background-color: #FFFEF2;
+	border-bottom: solid 1px #999999;
+	height: 4em;
+	display: flex;
+	align-items: center;
+}
+
+#header .logo {
+	margin-left: 0.5em;
+	width: 3.5em;
+	height: 3.5em;
+	background-image: url(../image/logo.png);
+	background-size: 100% 100%;
+}
+
+#header .title {
+	margin-left: 0.25em;
+	font-family: 'Roboto Condensed', sans-serif;
+	font-weight: bold;
+	font-size: 2em;
+}
+
+#header form {
+	flex: 1;
+	text-align: center;
+}
+
+#header form .query {
+	width: 20em;
+}
+
+.login_form {
+	background-color: #FFFFFF;
+	border: solid 1px #999999;
+	width: 25em;
+	min-height: 10em;
+	margin: 25vh auto;
+	box-shadow: 3px 2px 5px #999999;
+}
+
+.login_form .title {
+	font-weight: bold;
+	padding: 0.1em;
+	background-color: #FFFEF2;
+	border-bottom: solid 1px #999999;
+}
+
+.login_form .body {
+	padding: 1em;
+	height: 5em;
+}
+
+.login_form .body .icon {
+	float: left;
+	background-image: url(../image/login.png);
+	background-size: 100% 100%;
+	width: 5em;
+	height: 5em;
+}
+
+.login_form .body .content {
+	float: left;
+	margin-left: 2.5em;
+}
+
+.login_form .error {
+	color: #723236;
+	background-color: #FFDAD5;
+	border: solid 1px #B13E46;
+	padding: 0.5em;
+	margin: 1em;
+}
+
+#container {
+	background-color: #FFFEF2;
+	width: 100%;
+	height: calc( 100vh - 4em - 1px );
+	display: flex;
+}
+
+#side {
+	width: 15em;
+	height: 100%;
+	background-color: #F8F8F8;
+	border-right: solid 1px #999999;
+}
+
+#side .navitem {
+	display: flex;
+	align-items: center;
+	background-color: #FFFFFF;
+	border-bottom: solid 1px #999999;
+	padding: 0.5em;
+}
+
+#side .navitem .icon {
+	width: 2em;
+	height: 2em;
+	margin-right: 1em;
+}
+
+#side .navitem a {
+	color: blue;
+}
+
+#content_container {
+	background-color: #F8F8F8;
+	width: calc( 100% - 15em );
+	max-width: 55em;
+	height: 100%;
+	overflow-y: scroll;
+}
+
+#content {
+	padding: 1em;
+}
+
+.search_form {
+	border-bottom: solid 1px #999999;
+	background-color: #FFFEF2;
+	padding: 1em;
+}
+
+.search_form table {
+	width: 100%;
+}
+
+.search_form input {
+	width: calc( 100% - 2em );
+}
+
+.tender {
+	padding: 1em;
+	background-color: #FFFFFF;
+	border-bottom: solid 1px #999999;
+}
+
+.tender .id a {
+	color: blue;
+}
+
+.tender .price {
+	color: green;
+}
+
+.tender .subinfo {
+	color: #555555;
+	font-size: 0.9em;
+}
+
+.tender .org {
+	color: #555555;
+	font-size: 0.7em;
+}
+
+.tender .profit {
+	color: #BB6D1F;
+	font-weight: bold;
+}
+
+.tender details {
+	border: solid 1px #CCC;
+	background-color: #EEE;
+	padding: 0.25em;
+}
+
+.tender .commentary {
+	width: 100%;
+	height: 10em;
+	border: inset 1px #999;
+	overflow-y: scroll;
+	overflow-x: auto;
+	resize: both;
+}
+
+.pages {
+	padding: 1em;
+	text-align: center;
+}
+
+table.solution {
+	border-collapse: collapse;
+	width: 100%;
+	font-size: 0.8em;
+}
+
+table.solution tr td {
+	border: solid 1px #666;
+	background: #fff;
+}
+
+table.solution tbody:first-child tr td {
+	background: #ccc;
+}
+
+table.solution input {
+	border: none;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
+
+table.solution input:focus {
+    outline:none;
+}
+
+table.solution img {
+	float: left;
+	height: 1em;
+	width: 1em;
+	cursor: pointer;
+}
+
+table.solution tr td:last-child input {
+	width: calc( 100% - 1em );
+	color: blue;
+}
+
+.image-button {
+	height: 2em;
+	display: inline-flex;
+	align-items: center;
+}
+
+#fullscreen_window {
+	position: fixed;
+	top: 50px;
+	bottom: 50px;
+	left: 100px;
+	right: 100px;
+	background-color: #FFFFFF;
+	border: inset 1px #999;
+	box-shadow: 3px 2px 10px #999999;
+}
+
+#fullscreen_window .title {
+	background-color: #FFFEF2;
+	border-bottom: solid 1px #999;
+	padding: 0.25em;
+	height: 1.5em;
+}
+
+#fullscreen_window .content {
+	height: calc( 100% - 2em );
+	width: calc( 100% - 1px ); 
+	overflow: scroll;
+}
+
+#fullscreen_window .close {
+	width: 1.5em;
+	float: right;
+}
+
+.hidden {
+	display: none;
+}
+
+.title-with-icon {
+	display: flex;
+	align-items: center;
+	font-weight: bold;
+	font-size: 1.5em;
+} 
+
+.title-icon {
+	width: 3em;
+}
