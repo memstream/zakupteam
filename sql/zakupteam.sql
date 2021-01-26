@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost
--- Время создания: Янв 26 2021 г., 11:48
+-- Время создания: Янв 27 2021 г., 01:59
 -- Версия сервера: 10.0.38-MariaDB
 -- Версия PHP: 5.6.40
 
@@ -51,6 +51,33 @@ CREATE TABLE `favorite` (
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `notify`
+--
+
+CREATE TABLE `notify` (
+  `id` int(11) NOT NULL,
+  `notifyrule_id` int(11) NOT NULL,
+  `tender_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `notifyrule`
+--
+
+CREATE TABLE `notifyrule` (
+  `id` int(11) NOT NULL,
+  `include` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exclude` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `min` int(11) NOT NULL,
+  `max` int(11) NOT NULL,
+  `fz` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `tender`
 --
 
@@ -87,6 +114,18 @@ ALTER TABLE `favorite`
   ADD KEY `tender_id` (`tender_id`);
 
 --
+-- Индексы таблицы `notify`
+--
+ALTER TABLE `notify`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `notifyrule`
+--
+ALTER TABLE `notifyrule`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `tender`
 --
 ALTER TABLE `tender`
@@ -106,6 +145,18 @@ ALTER TABLE `attach`
 -- AUTO_INCREMENT для таблицы `favorite`
 --
 ALTER TABLE `favorite`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `notify`
+--
+ALTER TABLE `notify`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `notifyrule`
+--
+ALTER TABLE `notifyrule`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
