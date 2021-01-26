@@ -32,7 +32,10 @@ function recalcTable(et, table) {
 	}
 	price = parseFloat(price);
 	
+	// Столбцы 'Наша цена"
 	var col4 = $(table).find('tbody:last-child tr td:nth-child(4) input');
+	
+	// Столбцы "Кол-во"
 	var col5 = $(table).find('tbody:last-child tr td:nth-child(5) input');
 	var sum = 0;
 	for(var i = 0;i < col4.length;i++) {
@@ -40,6 +43,8 @@ function recalcTable(et, table) {
 		var v5 = parseFloat($(col5[i]).val() ? $(col5[i]).val() : 1);
 		sum += v4 * v5;
 	}
+	
+	// Если наша цена в итоге равна нулю, значит таблица не заполненна
 	if(sum) {
 		$(et).find('.formula').text(price + '-' + sum + '=' + (price - sum));
 		$(et).find('.profit').text(' +(' + (price - sum) + ')');
@@ -50,6 +55,7 @@ function recalcTable(et, table) {
 	saveTable(et, table);
 }
 
+// Если структура таблицы изменилась, нужно перебиндить события
 function rebuildEvents(et, table) {
 	$(table).find('img').each(function(i, img) {
 		$(img).unbind('click');

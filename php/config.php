@@ -3,7 +3,11 @@ define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASSWORD', '');
 define('DB_NAME', 'zakupteam');
+
+// Общий ключ входа 
 define('KEY', 'Letovist');
+
+// Настройки поиска по умолчанию
 define('TEXT_INCLUDE', '');
 define('TEXT_EXCLUDE', '');
 define('MIN_PRICE', 0);
