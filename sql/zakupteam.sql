@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost
--- Время создания: Янв 27 2021 г., 01:59
+-- Время создания: Янв 27 2021 г., 02:02
 -- Версия сервера: 10.0.38-MariaDB
 -- Версия PHP: 5.6.40
 
@@ -117,7 +117,9 @@ ALTER TABLE `favorite`
 -- Индексы таблицы `notify`
 --
 ALTER TABLE `notify`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `notifyrule_id` (`notifyrule_id`),
+  ADD KEY `tender_id` (`tender_id`);
 
 --
 -- Индексы таблицы `notifyrule`
@@ -180,6 +182,13 @@ ALTER TABLE `attach`
 --
 ALTER TABLE `favorite`
   ADD CONSTRAINT `favorite_ibfk_1` FOREIGN KEY (`tender_id`) REFERENCES `tender` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `notify`
+--
+ALTER TABLE `notify`
+  ADD CONSTRAINT `notify_ibfk_1` FOREIGN KEY (`notifyrule_id`) REFERENCES `notifyrule` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `notify_ibfk_2` FOREIGN KEY (`tender_id`) REFERENCES `tender` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
