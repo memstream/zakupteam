@@ -1,6 +1,8 @@
 <?php require_once __DIR__ . '/base.php'; 
 if(empty($_COOKIE['csrf'])) {
-	setcookie('csrf', bin2hex(openssl_random_pseudo_bytes(16)));
+	$csrf_token = bin2hex(openssl_random_pseudo_bytes(16));
+	setcookie('csrf', $csrf_token);
+	$_COOKIE['csrf'] = $csrf_token;
 }
 ?>
 <!DOCTYPE HTML>
