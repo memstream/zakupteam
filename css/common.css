@@ -68,48 +68,6 @@ button img {
 	width: 20em;
 }
 
-.login_form {
-	background-color: #FFFFFF;
-	border: solid 1px #999999;
-	width: 25em;
-	min-height: 10em;
-	margin: 25vh auto;
-	box-shadow: 3px 2px 5px #999999;
-}
-
-.login_form .title {
-	font-weight: bold;
-	padding: 0.1em;
-	background-color: #FFFEF2;
-	border-bottom: solid 1px #999999;
-}
-
-.login_form .body {
-	padding: 1em;
-	height: 5em;
-}
-
-.login_form .body .icon {
-	float: left;
-	background-image: url(../image/login.png);
-	background-size: 100% 100%;
-	width: 5em;
-	height: 5em;
-}
-
-.login_form .body .content {
-	float: left;
-	margin-left: 2.5em;
-}
-
-.login_form .error {
-	color: #723236;
-	background-color: #FFDAD5;
-	border: solid 1px #B13E46;
-	padding: 0.5em;
-	margin: 1em;
-}
-
 #container {
 	background-color: #FFFEF2;
 	width: 100%;
@@ -154,20 +112,6 @@ button img {
 	padding: 1em;
 }
 
-.search_form {
-	border-bottom: solid 1px #999999;
-	background-color: #FFFEF2;
-	padding: 1em;
-}
-
-.search_form table {
-	width: 100%;
-}
-
-.search_form input {
-	width: calc( 100% - 2em );
-}
-
 .tender {
 	padding: 1em;
 	background-color: #FFFFFF;
@@ -203,95 +147,10 @@ button img {
 	padding: 0.25em;
 }
 
-.tender .commentary {
-	width: 100%;
-	height: 10em;
-	border: inset 1px #999;
-	overflow-y: scroll;
-	overflow-x: auto;
-	resize: both;
-}
-
-.pages {
-	padding: 1em;
-	text-align: center;
-}
-
-table.solution {
-	border-collapse: collapse;
-	width: 100%;
-	font-size: 0.8em;
-}
-
-table.solution tr td {
-	border: solid 1px #666;
-	background: #fff;
-}
-
-table.solution tbody:first-child tr td {
-	background: #ccc;
-}
-
-table.solution input {
-	border: none;
-	padding: 0;
-	margin: 0;
-	width: 100%;
-}
-
-table.solution input:focus {
-    outline:none;
-}
-
-table.solution img {
-	float: left;
-	height: 1em;
-	width: 1em;
-	cursor: pointer;
-}
-
-table.solution tr td:last-child input {
-	width: calc( 100% - 1em );
-	color: blue;
-}
-
 .image-button {
 	height: 2em;
 	display: inline-flex;
 	align-items: center;
-}
-
-#fullscreen_window {
-	position: fixed;
-	top: 50px;
-	bottom: 50px;
-	left: 100px;
-	right: 100px;
-	background-color: #FFFFFF;
-	border: inset 1px #999;
-	box-shadow: 3px 2px 10px #999999;
-}
-
-#fullscreen_window .title {
-	background-color: #FFFEF2;
-	border-bottom: solid 1px #999;
-	padding: 0.25em;
-	height: 1.5em;
-}
-
-#fullscreen_window .content {
-	height: calc( 100% - 2em );
-	width: calc( 100% - 1px ); 
-	overflow: scroll;
-}
-
-#fullscreen_window .close {
-	width: 1.5em;
-	float: right;
-}
-
-.hidden {
-	display: none;
 }
 
 .title-with-icon {

@@ -27,8 +27,9 @@ api_route(array(
 		R::store($t);
 	}
 ));
-?>
-<?php require_once __DIR__ . '/php/p/begin_app.php'; ?>
+
+$css_files = [ 'css/favorite.css' ];
+require_once __DIR__ . '/php/p/begin_app.php'; ?>
 <?php 
 $zakupki = array();
 foreach(R::findAll('favorite', ' order by created_at desc ') as $f) {

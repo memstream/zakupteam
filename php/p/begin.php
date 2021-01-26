@@ -12,6 +12,11 @@ if(empty($_COOKIE['csrf'])) {
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet"> 
 		<link href="css/common.css" rel="stylesheet">
 		<link rel="shortcut icon" type="image/ico" href="favicon.ico"/>
+		<?php if(isset($css_files)): ?>
+			<?php foreach($css_files as $href): ?>
+				<link rel="stylesheet" href="<?= $href ?>">
+			<?php endforeach; ?>
+		<?php endif; ?>
 		<title>ZakupTeam</title>
 	</head>
 	<body>

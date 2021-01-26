@@ -1,0 +1,41 @@
+.login_form {
+	background-color: #FFFFFF;
+	border: solid 1px #999999;
+	width: 25em;
+	min-height: 10em;
+	margin: 25vh auto;
+	box-shadow: 3px 2px 5px #999999;
+}
+
+.login_form .title {
+	font-weight: bold;
+	padding: 0.1em;
+	background-color: #FFFEF2;
+	border-bottom: solid 1px #999999;
+}
+
+.login_form .body {
+	padding: 1em;
+	height: 5em;
+}
+
+.login_form .body .icon {
+	float: left;
+	background-image: url(../image/login.png);
+	background-size: 100% 100%;
+	width: 5em;
+	height: 5em;
+}
+
+.login_form .body .content {
+	float: left;
+	margin-left: 2.5em;
+}
+
+.login_form .error {
+	color: #723236;
+	background-color: #FFDAD5;
+	border: solid 1px #B13E46;
+	padding: 0.5em;
+	margin: 1em;
+}

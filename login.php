@@ -13,6 +13,7 @@
 			), false);
 		}
 	));
+$css_files = [ 'css/login.css' ];
 require_once __DIR__ . '/php/p/begin.php'; ?>
 <div class="login_form">
 	<div class="title">Вход в систему</div>

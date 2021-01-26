@@ -23,8 +23,9 @@ api_route(array(
 		die;
 	}
 ));
-?>
-<?php require_once __DIR__ . '/php/p/begin_app.php'; ?>
+
+$css_files = [ 'css/search.css' ];
+require_once __DIR__ . '/php/p/begin_app.php'; ?>
 <form class="search_form" action="search.php" method="GET">
 	<table>
 		<tr>
