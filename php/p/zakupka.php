@@ -7,7 +7,7 @@
 	<div class="subinfo">
 		<span class="type"><?= $zakupka['type'] ?></span> |
 		<span class="ending">
-			<?php if(isset($favorite_view_style)): ?>
+			<?php if(isset($zakupka_full_view_style) || isset($zakupka_view_subinfo)): ?>
 				Подача заявок до: <?= $zakupka['ending'] ?> 
 				<?php if($zakupka['tradedate']): ?>
 					| Проведение: <?= substr($zakupka['tradedate'], 0, -9) ?>
@@ -18,7 +18,7 @@
 	<span class="info"><?= $zakupka['info'] ?></span><br>
 	<details class="docs">
 		<summary>Документы</summary>
-		<?php if(isset($favorite_view_style)): ?>
+		<?php if(isset($zakupka_full_view_style) || isset($zakupka_view_subinfo)): ?>
 			<?php foreach(R::findAll('attach', ' tender_id = ? ', [ $zakupka['id'] ]) as $file): ?>
 				<div class="file">
 					<img class="text-icon" src="<?= $file['img'] ?>">
@@ -27,7 +27,7 @@
 			<?php endforeach; ?>
 		<?php endif; ?>
 	</details>
-	<?php if(isset($favorite_view_style)): ?>
+	<?php if(isset($zakupka_full_view_style)): ?>
 		<br>
 		<details>
 			<summary>Заметка</summary>

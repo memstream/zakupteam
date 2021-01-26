@@ -68,6 +68,12 @@ button img {
 	width: 20em;
 }
 
+.subheader {
+	border-bottom: solid 1px #999999;
+	background-color: #FFFEF2;
+	padding: 1em;
+}
+
 #container {
 	background-color: #FFFEF2;
 	width: 100%;
@@ -162,4 +168,8 @@ button img {
 
 .title-icon {
 	width: 3em;
+}
+
+.hidden {
+	display: none;
 }

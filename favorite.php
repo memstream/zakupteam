@@ -42,7 +42,7 @@ foreach(R::findAll('favorite', ' order by created_at desc ') as $f) {
 	}
 }
 foreach($zakupki as $zakupka): ?>
-	<?php $favorite_view_style = true;
+	<?php $zakupka_full_view_style = true;
 	include __DIR__ . '/php/p/zakupka.php'; ?>
 <?php endforeach; ?>
 

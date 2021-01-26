@@ -1,0 +1,27 @@
+.search_form {
+	background-color: #fff;
+}
+
+.notify_container {
+	border-bottom: solid 1px #999;
+	display: flex;
+}
+
+.notify_container_hidden {
+	display: none;
+}
+
+.notify_container .left {
+	width: 3em;
+	border-right: solid 1px #999;
+}
+
+.notify_container .tender:last-child {
+	border-bottom: none;
+}
+
+.notify_header {
+	background-color: #fff;
+	padding: 0.5em;
+	border-bottom: solid 1px #999;
+}

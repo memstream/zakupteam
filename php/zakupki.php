@@ -2,6 +2,40 @@
 require_once __DIR__ . '/simple_html_dom.php';
 require_once __DIR__ . '/rb.php';
 
+function multiexplode($delimiters, $string) {
+	$ready = str_replace($delimiters, $delimiters[0], $string);
+	$launch = explode($delimiters[0], $ready);
+	return  $launch;
+}
+
+function replace_first($str_pattern, $str_replacement, $string){
+	if(strpos($string, $str_pattern) !== false){
+		$occurrence = strpos($string, $str_pattern);
+		return substr_replace($string, $str_replacement, strpos($string, $str_pattern), strlen($str_pattern));
+	}
+	return $string;
+}
+
+function correct_date_format($str) {
+	$str = str_replace('.', '-', $str);
+	$str = str_replace('в ', '', $str);
+	
+	if(substr_count($str, ':') == 1) $str = trim($str) . ':00';
+	if(strlen(explode('-', $str)[0]) != 4) { 
+		$e = multiexplode(array('-', ' '), trim($str));
+		
+		$str = replace_first($e[0], 'A', $str);
+		$str = replace_first($e[1], 'B', $str);
+		$str = replace_first($e[2], 'C', $str);
+		
+		
+		$str = str_replace('A', $e[2], $str);
+		$str = str_replace('B', $e[1], $str);
+		$str = str_replace('C', $e[0], $str);
+	}
+	return $str;
+}
+
 function zakupki_curl($url) {
 	$userAgent = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13';
 	$ch = curl_init();
@@ -77,40 +111,6 @@ function zakupki_search($p, $i, $m, $n, $f) {
 }
 
 function zakupki_subinfo($tid) {
-	function multiexplode($delimiters, $string) {
-		$ready = str_replace($delimiters, $delimiters[0], $string);
-		$launch = explode($delimiters[0], $ready);
-		return  $launch;
-	}
-	
-	function replace_first($str_pattern, $str_replacement, $string){
-		if(strpos($string, $str_pattern) !== false){
-			$occurrence = strpos($string, $str_pattern);
-			return substr_replace($string, $str_replacement, strpos($string, $str_pattern), strlen($str_pattern));
-		}
-		return $string;
-	}
-	
-	function correct_date_format($str) {
-		$str = str_replace('.', '-', $str);
-		$str = str_replace('в ', '', $str);
-		
-		if(substr_count($str, ':') == 1) $str = trim($str) . ':00';
-		if(strlen(explode('-', $str)[0]) != 4) { 
-			$e = multiexplode(array('-', ' '), trim($str));
-			
-			$str = replace_first($e[0], 'A', $str);
-			$str = replace_first($e[1], 'B', $str);
-			$str = replace_first($e[2], 'C', $str);
-			
-			
-			$str = str_replace('A', $e[2], $str);
-			$str = str_replace('B', $e[1], $str);
-			$str = str_replace('C', $e[0], $str);
-		}
-		return $str;
-	}
-	
 	$t = R::findOne('tender', ' n = ? ', [ $tid ]);
 	if(!$t) return null;
 	

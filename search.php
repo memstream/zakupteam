@@ -26,7 +26,7 @@ api_route(array(
 
 $css_files = [ 'css/search.css' ];
 require_once __DIR__ . '/php/p/begin_app.php'; ?>
-<form class="search_form" action="search.php" method="GET">
+<form class="search_form subheader" action="search.php" method="GET">
 	<table>
 		<tr>
 			<td>Тест включает:</td>
