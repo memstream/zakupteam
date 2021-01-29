@@ -2,20 +2,6 @@ $(document).ready(function() {
 	var exclude = $('input[name="e"]').val().toUpperCase();
 	var excludeWords = exclude.split(' ');
 	$('.tender').each(function(i, et) {
-		if(exclude.length) {
-			var fullText = $(et).find('.org').text();
-			fullText += ' ' + $(et).find('.info').text();
-			fullText += ' ' + $(et).find('.type').text();
-			fullText = fullText.toUpperCase();
-			
-			for(var i = 0;i < excludeWords.length;i++) {
-				if(fullText.search(excludeWords[i]) != -1) {
-					et.remove();
-					return;
-				}
-			}
-		}
-		
 		$.post('search.php', {
 			'csrf': csrf_token,
 			'action': 'subinfo',

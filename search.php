@@ -55,7 +55,7 @@ require_once __DIR__ . '/php/p/begin_app.php'; ?>
 	</table>
 </form>
 <?php 
-$result = zakupki_search($p, $i, $m, $n, $f);
+$result = zakupki_search($p, $i, $e, $m, $n, $f);
 foreach($result['zakupki'] as $zakupka): ?>
 	<?php include __DIR__ . '/php/p/zakupka.php'; ?>
 <?php endforeach; ?>

@@ -32,24 +32,6 @@ $(document).ready(function() {
 	$('.search_form').each(function(i, ef) {
 		if(!$(ef).attr('id')) return;
 		formBindEvents(ef);
-		
-		var exclude = $(ef).find('input[name="exclude"]').val().toUpperCase();
-		var excludeWords = exclude.split(' ');
-		$('#' + $(ef).attr('id') + '.notify_container .tender').each(function(i, et) {
-			if(exclude.length) {
-				var fullText = $(et).find('.org').text();
-				fullText += ' ' + $(et).find('.info').text();
-				fullText += ' ' + $(et).find('.type').text();
-				fullText = fullText.toUpperCase();
-				
-				for(var i = 0;i < excludeWords.length;i++) {
-					if(fullText.search(excludeWords[i]) != -1) {
-						et.remove();
-						return;
-					}
-				}
-			}
-		});
 	});
 	
 	$('.btn-add').click(function() {

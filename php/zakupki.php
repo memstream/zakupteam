@@ -65,7 +65,27 @@ function zakupki_search_url($p, $i, $m, $n, $f) {
 	return $url;
 }
 
-function zakupki_search($p, $i, $m, $n, $f) {
+function zakupki_filter($zakupki, $exclude_text) {
+	if($exclude_text === '') return $zakupki;
+	$filtered = array();
+	$exclude_words = explode(' ', $exclude_text);
+	foreach($zakupki as $zakupka) {
+		$text = $zakupka['org'] . ' ' . $zakupka['type'] . ' ' . $zakupka['info'];
+		$ignore = false;
+		foreach($exclude_words as $word) {
+			if(mb_strpos(mb_strtoupper($text), mb_strtoupper($word)) !== FALSE) {
+				$ignore = true;
+				break;
+			} 
+		}
+		if(!$ignore) {
+			array_push($filtered, $zakupka);
+		}
+	}
+	return $filtered;
+}
+
+function zakupki_search($p, $i, $e, $m, $n, $f) {
 	$html = zakupki_curl(zakupki_search_url($p, $i, $m, $n, $f));
 	$doc = str_get_html($html);
 	
@@ -105,7 +125,7 @@ function zakupki_search($p, $i, $m, $n, $f) {
 		array_push($pages, trim($page->plaintext));
 	}
 	return array(
-		'zakupki' => $zakupki,
+		'zakupki' => zakupki_filter($zakupki, $e),
 		'pages' => $pages
 	);
 }
