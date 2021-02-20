@@ -26,6 +26,10 @@ button img {
 	margin-right: 0.5em;
 }
 
+.archive-link {
+	color: #696FC5;
+}
+
 .text-icon {
 	display: inline;
 }

@@ -12,7 +12,16 @@
 		</div>
 		<ul>
 			<?php foreach($tenders as $tender): ?>
-				<li>[<?= substr($tender->tradedate, 0, -9) ?>] <a href="favorite.php#<?= _XSS($tender->n) ?>"><?= _XSS($tender->info) ?></a></li>
+				<?php $in_archive = $tender->ending < date('Y-m-d H:i:s'); ?>
+				<?php $starturl = $in_archive ? 'archive.php' : 'favorite.php'; ?>
+				<li>[<?= substr($tender->tradedate, 0, -9) ?>] 
+					<a 
+						<?php if($in_archive): ?>
+							class="archive-link"
+						<?php endif; ?>
+						href="<?= $starturl ?>#<?= _XSS($tender->n) ?>"><?= _XSS($tender->info) ?>
+					</a>
+				</li>
 			<?php endforeach; ?>
 		</ul>
 	<?php endif; ?>
