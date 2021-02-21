@@ -32,14 +32,24 @@ $css_files = [ 'css/favorite.css' ];
 require_once __DIR__ . '/php/p/begin_app.php'; ?>
 <?php 
 $zakupki = array();
-foreach(R::findAll('favorite', ' order by created_at desc ') as $f) {
-	if(isset($is_archive)) {
-		$zakupka = R::findOne('tender', ' ending <= ? and id = ? ', [ date('Y-m-d H:i:s'), $f->tender_id ]);
-		if($zakupka) array_push($zakupki, $zakupka);
-	} else {
-		$zakupka = R::findOne('tender', ' ending >= ? and id = ? ', [ date('Y-m-d H:i:s'), $f->tender_id ]);
-		if($zakupka) array_push($zakupki, $zakupka);
+$zakupka_show_newtab = true;
+$zakupka_show_details = false;
+
+if(empty($_GET['id'])) {
+	foreach(R::findAll('favorite', ' order by created_at desc ') as $f) {
+		if(isset($is_archive)) {
+			$zakupka = R::findOne('tender', ' ending <= ? and id = ? ', [ date('Y-m-d H:i:s'), $f->tender_id ]);
+			if($zakupka) array_push($zakupki, $zakupka);
+		} else {
+			$zakupka = R::findOne('tender', ' ending >= ? and id = ? ', [ date('Y-m-d H:i:s'), $f->tender_id ]);
+			if($zakupka) array_push($zakupki, $zakupka);
+		}
 	}
+} else {
+	array_push($zakupki, R::findOne('tender', ' id = ? ', [ $_GET['id'] ]));
+	$zakupka_show_newtab = false;
+	$zakupka_show_details = true;
+	
 }
 foreach($zakupki as $zakupka): ?>
 	<?php $zakupka_full_view_style = true;

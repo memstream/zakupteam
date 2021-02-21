@@ -26,6 +26,11 @@ button img {
 	margin-right: 0.5em;
 }
 
+.a-button {
+	color: black;
+	text-decoration: none;
+}
+
 .archive-link {
 	color: #696FC5;
 }

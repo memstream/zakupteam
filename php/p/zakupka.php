@@ -16,7 +16,7 @@
 		</span>
 	</div>
 	<span class="info"><?= $zakupka['info'] ?></span><br>
-	<details class="docs">
+	<details class="docs" <?= !empty($zakupka_show_details) ? 'open' : '' ?>>
 		<summary>Документы</summary>
 		<?php if(isset($zakupka_full_view_style) || isset($zakupka_view_subinfo)): ?>
 			<?php foreach(R::findAll('attach', ' tender_id = ? ', [ $zakupka['id'] ]) as $file): ?>
@@ -29,7 +29,7 @@
 	</details>
 	<?php if(isset($zakupka_full_view_style)): ?>
 		<br>
-		<details>
+		<details <?= !empty($zakupka_show_details) ? 'open' : '' ?>>
 			<summary>Заметка</summary>
 			<div class="commentary" contenteditable><?= $zakupka['commentary'] ? $zakupka['commentary'] : '' ?></div>
 			<br>
@@ -39,7 +39,7 @@
 			</button>
 		</details>
 		<br>
-		<details>
+		<details <?= !empty($zakupka_show_details) ? 'open' : '' ?>>
 			<summary>Решение</summary>
 			<?php if($zakupka['table']): ?>
 				<?= $zakupka['table'] ?>
@@ -74,6 +74,14 @@
 	<span class="org"><?= $zakupka['org'] ?></span>
 	</p>
 	<div>
-		<button class="btn_favorite" tid="<?= $zakupka['id'] ?>"><img src="image/favorite.png">В избранное</button>
+		<?php if(isset($zakupka_show_newtab) && $zakupka_show_newtab): ?>
+			<a href="favorite.php?id=<?= $zakupka['id'] ?>" target="_blank" class="a-button">
+				<button class="image-button">
+					<img src="image/fullscreen.png" class="text-icon">
+					Открыть в отдельной вкладке
+				</button>
+			</a>
+		<?php endif; ?>
+		<button class="image-button btn_favorite" tid="<?= $zakupka['id'] ?>"><img src="image/favorite.png">В избранное</button>
 	</div>
 </div>
