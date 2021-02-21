@@ -44,13 +44,6 @@ require_once __DIR__ . '/php/p/begin_app.php'; ?>
 		<tr>
 			<td><input type="submit" value="Поиск"></td>
 			<td></td>
-			<td>ФЗ:</td>
-			<td>
-				<select name="f">
-					<option value="44" <?= $f == 44 ? 'selected' : '' ?>>44-ФЗ</option>
-					<option value="223" <?= $f == 223 ? 'selected' : '' ?>>223-ФЗ</option>
-				</select>
-			</td>
 		</tr>
 	</table>
 </form>
