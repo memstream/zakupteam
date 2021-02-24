@@ -17,7 +17,7 @@
 		<ul>
 			<?php foreach($tenders_entry as $tender): ?>
 				<li>[<?= substr($tender->ending, 0, -9) ?>] 
-					<a href="favorite.php?id=<?= $tender->id ?>"><?= _XSS($tender->info) ?></a>
+					<a href="favorite.php?id=<?= $tender->id ?>"><?= $tender->info ?></a>
 					</p>
 				</li>
 			<?php endforeach; ?>
@@ -36,7 +36,7 @@
 						<?php if($in_archive): ?>
 							class="archive-link"
 						<?php endif; ?>
-						href="favorite.php?id=<?= $tender->id ?>"><?= _XSS($tender->info) ?>
+						href="favorite.php?id=<?= $tender->id ?>"><?= $tender->info ?>
 					</a>
 					</p>
 				</li>
