@@ -25,7 +25,6 @@ function formBindEvents(form) {
 		});
 	}
 	$(form).find('input').change(onChange);
-	$(form).find('select').change(onChange);
 }
 
 $(document).ready(function() {

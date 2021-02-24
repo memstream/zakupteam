@@ -69,13 +69,6 @@ require_once __DIR__ . '/php/p/begin_app.php'; ?>
 							Удалить
 						</button>
 					</td>
-					<td>ФЗ:</td>
-					<td>
-						<select name="fz">
-							<option value="44" <?= $nr->fz == 44 ? 'selected' : '' ?>>44-ФЗ</option>
-							<option value="223" <?= $nr->fz == 223 ? 'selected' : '' ?>>223-ФЗ</option>
-						</select>
-					</td>
 				</tr>
 			</table>
 		</div>
@@ -129,13 +122,6 @@ require_once __DIR__ . '/php/p/begin_app.php'; ?>
 					<img src="image/close.png"> 
 					Удалить
 				</button>
-			</td>
-			<td>ФЗ:</td>
-			<td>
-				<select name="f">
-					<option value="44" <?= FZ == 44 ? 'selected' : '' ?>>44-ФЗ</option>
-					<option value="223" <?= FZ == 223 ? 'selected' : '' ?>>223-ФЗ</option>
-				</select>
 			</td>
 		</tr>
 	</table>
