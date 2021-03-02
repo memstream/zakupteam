@@ -1,18 +1,18 @@
 <?php require_once __DIR__ . '/php/p/base.php'; 
 	if(isset($_SESSION['auth'])) {
-		api_redirect('index.php', array(), false);
+		api_redirect('index.php', [], false);
 	} 
-	api_route(array(
+	api_route([
 		'@login#key,?to' => function($key, $to = null) {
 			if($key === KEY) {
 				$_SESSION['auth'] = true;
-				api_redirect($to ? $to : 'index.php', array(), false);
+				api_redirect($to ? $to : 'index.php', [], false);
 			} 
-			api_redirect('login.php', array(
+			api_redirect('login.php', [
 				'error' => 'Неправильный ключ!'
-			), false);
+			], false);
 		}
-	));
+	]);
 $css_files = [ 'css/login.css' ];
 require_once __DIR__ . '/php/p/begin.php'; ?>
 <div class="login_form">

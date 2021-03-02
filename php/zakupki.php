@@ -22,7 +22,7 @@ function correct_date_format($str) {
 	
 	if(substr_count($str, ':') == 1) $str = trim($str) . ':00';
 	if(strlen(explode('-', $str)[0]) != 4) { 
-		$e = multiexplode(array('-', ' '), trim($str));
+		$e = multiexplode(['-', ' '], trim($str));
 		
 		$str = replace_first($e[0], 'A', $str);
 		$str = replace_first($e[1], 'B', $str);
@@ -67,7 +67,7 @@ function zakupki_search_url($p, $i, $m, $n, $f) {
 
 function zakupki_filter($zakupki, $exclude_text) {
 	if($exclude_text === '') return $zakupki;
-	$filtered = array();
+	$filtered = [];
 	$exclude_words = explode(' ', $exclude_text);
 	foreach($zakupki as $zakupka) {
 		$text = $zakupka['org'] . ' ' . $zakupka['type'] . ' ' . $zakupka['info'];
@@ -89,19 +89,19 @@ function zakupki_search($p, $i, $e, $m, $n, $f) {
 	$html = zakupki_curl(zakupki_search_url($p, $i, $m, $n, $f));
 	$doc = str_get_html($html);
 	
-	$zakupki = array();
+	$zakupki = [];
 	foreach($doc->find('.search-registry-entry-block') as $block) {
 		$href = 'https://zakupki.gov.ru' . $block->find('.registry-entry__header-mid__number a', 0)->href;
 		$type = str_replace('44-ФЗ ', '', trim($block->find('.registry-entry__header-top__title', 0)->plaintext));
 		if(strpos($type, 'Закрытый аукцион') !== false) continue;
-		$zakupka = array(
+		$zakupka = [
 			'n' => trim(mb_substr(trim($block->find('.registry-entry__header-mid__number a', 0)->plaintext), 1)),
 			'price' => trim($block->find('.price-block__value', 0)->plaintext),
 			'info' => trim($block->find('.registry-entry__body-value', 0)->plaintext),
 			'org' => trim($block->find('.registry-entry__body-href a', 0)->plaintext),
 			'type' => $type,
 			'href' => $href
-		);
+		];
 		
 		$t = R::findOne('tender', ' n = ? ', [ $zakupka['n'] ]);
 		if(!$t) {
@@ -120,21 +120,21 @@ function zakupki_search($p, $i, $e, $m, $n, $f) {
 		array_push($zakupki, $zakupka);
 	}
 	
-	$pages = array();
+	$pages = [];
 	foreach($doc->find('.paginator-block .pages .link-text') as $page) {
 		array_push($pages, trim($page->plaintext));
 	}
-	return array(
+	return [
 		'zakupki' => zakupki_filter($zakupki, $e),
 		'pages' => $pages
-	);
+	];
 }
 
 function zakupki_subinfo($tid) {
 	$t = R::findOne('tender', ' n = ? ', [ $tid ]);
 	if(!$t) return null;
 	
-	$files = array();
+	$files = [];
 	$tradedate = null; 
 	$ending = $t->ending;
 	if(!$ending) {
@@ -150,11 +150,11 @@ function zakupki_subinfo($tid) {
 		$doc = str_get_html(zakupki_curl(str_replace('common-info', 'documents', $t->href)));
 		foreach($doc->find('.closedInactiveDocuments') as $block) {
 			foreach($block->find('.attachment') as $attach) {
-				$file = array(
+				$file = [
 					'img' => 'https://zakupki.gov.ru/' . $attach->find('img', 0)->src,
 					'title' => $attach->find('.section__value a', 0)->plaintext,
 					'href' => $attach->find('.section__value a', 0)->href
-				);
+				];
 				
 				$attach = R::dispense('attach');
 				$attach->tender_id = $t->id;
@@ -176,8 +176,8 @@ function zakupki_subinfo($tid) {
 		}
 	}
 	
-	return array(
+	return [
 		'ending' => $ending,
 		'files' => $files
-	);
+	];
 }

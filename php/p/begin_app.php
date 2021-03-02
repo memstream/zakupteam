@@ -1,7 +1,7 @@
 <?php require_once __DIR__ . '/base.php';
-if(!api_auth()) api_redirect('login.php', array(
+if(!api_auth()) api_redirect('login.php', [
 	'to' => $_SERVER['REQUEST_URI']
-));
+]);
 require_once __DIR__ . '/begin.php';
 ?>
 <div id="container">

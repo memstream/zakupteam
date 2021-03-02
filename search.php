@@ -17,12 +17,12 @@ if(isset($_GET['n'])) $n = $_GET['n'];
 if(isset($_GET['f'])) $f = $_GET['f'];
 if(isset($_GET['p'])) $p = $_GET['p'];
 
-api_route(array(
+api_route([
 	'subinfo#tid' => function($tid) {
 		echo json_encode(zakupki_subinfo($tid));
 		die;
 	}
-));
+]);
 
 $css_files = [ 'css/search.css' ];
 require_once __DIR__ . '/php/p/begin_app.php'; ?>
@@ -59,14 +59,14 @@ foreach($result['zakupki'] as $zakupka): ?>
 		<?php if($p == $page): ?>
 			<b><?= $page ?></b>
 		<?php else: ?>
-			<a href="<?= api_to('search.php', array(
+			<a href="<?= api_to('search.php', [
 				'i' => $i,
 				'e' => $e,
 				'm' => $m,
 				'n' => $n,
 				'f' => $f,
 				'p' => _XSS($page)
-			), false) ?>"><?= _XSS($page) ?></a>
+			], false) ?>"><?= _XSS($page) ?></a>
 		<?php endif; ?>
 		
 	<?php endforeach; ?>

@@ -3,7 +3,7 @@ function api_auth() {
 	return isset($_SESSION['auth']);
 }
 
-function api_to($url, $params = array(), $skipcsrf = true) {
+function api_to($url, $params = [], $skipcsrf = true) {
 	$skipcsrf = !$skipcsrf;
 	
 	$first = true;
@@ -24,7 +24,7 @@ function api_to($url, $params = array(), $skipcsrf = true) {
 	return $url;
 }
 
-function api_redirect($url, $params = array(), $skipcsrf = true) {
+function api_redirect($url, $params = [], $skipcsrf = true) {
 	header('Location: ' . api_to($url, $params, $skipcsrf));
 	die;
 }
@@ -40,7 +40,7 @@ function api_route($actions) {
 	
 	foreach($actions as $name => $fn) {
 		$auth = true;
-		$args = array();
+		$args = [];
 		$e = explode('#', $name);
 		if(count($e) > 1) {
 			$name = $e[0];
@@ -59,7 +59,7 @@ function api_route($actions) {
 		}
 		
 		if($req['action'] === $name) {
-			$params = array();
+			$params = [];
 			foreach($args as $arg) {
 				$need = true;
 				$type = 'str';

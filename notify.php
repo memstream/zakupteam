@@ -1,7 +1,7 @@
 <?php 
 require_once __DIR__ . '/php/p/base.php';
 
-api_route(array(
+api_route([
 	'add_rule' => function() {
 		$d = R::dispense('notifyrule');
 		$d->include = TEXT_INCLUDE;
@@ -24,7 +24,7 @@ api_route(array(
 			R::store($r);
 		}
 	}
-));
+]);
 
 $css_files = ['css/search.css', 'css/notify.css'];
 require_once __DIR__ . '/php/p/begin_app.php'; ?>

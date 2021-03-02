@@ -1,5 +1,5 @@
 <?php require_once __DIR__ . '/php/p/base.php'; 
-api_route(array(
+api_route([
 	'in#tid' => function($tid) {
 		if(R::findOne('favorite', ' tender_id = ? ', [ $tid ])) {
 			echo 'true';
@@ -26,12 +26,12 @@ api_route(array(
 		$t->commentary = $commentary;
 		R::store($t);
 	}
-));
+]);
 
 $css_files = [ 'css/favorite.css' ];
 require_once __DIR__ . '/php/p/begin_app.php'; ?>
 <?php 
-$zakupki = array();
+$zakupki = [];
 $zakupka_show_newtab = true;
 $zakupka_show_details = false;
 
