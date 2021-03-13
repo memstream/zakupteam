@@ -68,7 +68,7 @@ function zakupki_search_url($p, $i, $m, $n, $f) {
 function zakupki_filter($zakupki, $exclude_text) {
 	if($exclude_text === '') return $zakupki;
 	$filtered = [];
-	$exclude_words = explode(' ', $exclude_text);
+	$exclude_words = array_filter(explode(' ', $exclude_text));
 	foreach($zakupki as $zakupka) {
 		$text = $zakupka['org'] . ' ' . $zakupka['type'] . ' ' . $zakupka['info'];
 		$ignore = false;
