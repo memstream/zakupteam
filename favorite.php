@@ -30,13 +30,97 @@ api_route([
 
 $css_files = [ 'css/favorite.css' ];
 require_once __DIR__ . '/php/p/begin_app.php'; ?>
+
+<?php
+$sort_order_options = [
+	[
+		'value' => 'asc',
+		'title' => 'От меньшего к большему'
+	],
+	[
+		'value' => 'desc',
+		'title' => 'От большего к меньшему'
+	]
+];
+
+$sort_by_options = [
+	[
+		'value' => 'created_at',
+		'title' => 'Дата добавления в избранное'
+	],
+	[
+		'value' => 'ending',
+		'title' => 'Дата окончания подачи заявок'
+	],
+	[
+		'value' => 'tradedate',
+		'title' => 'Дата проведения'
+	]
+];
+
+$sort_order = $_GET['sort_order'] ?? $sort_order_options[0]['value'];
+$sort_by = $_GET['sort_by'] ?? $sort_by_options[0]['value'];
+
+if(!in_array($sort_order, array_column($sort_order_options, 'value'))) {
+	$sort_order = $sort_order_options[0]['value'];
+}
+
+if(!in_array($sort_by, array_column($sort_by_options, 'value'))) {
+	$sort_by = $sort_by_options[0]['value'];
+}
+
+if($sort_by == 'created_at') {
+	$sort_query = "ORDER BY created_at $sort_order";
+} else {
+	$sort_query = "JOIN tender ON tender.id = favorite.tender_id ORDER BY tender.$sort_by $sort_order";
+}
+?>
+
+<form class="subheader" action="<?= isset($is_archive) ? 'archive.php' : 'favorite.php' ?>" method="GET">
+	<table>
+		<tr>
+			<td>В порядке:</td>
+			<td>
+				<select name="sort_by">
+					<?php foreach($sort_by_options as $option): ?>
+						<option 
+							value="<?= $option['value'] ?>" 
+							<?= $option['value'] == $sort_by ? 'selected' : '' ?>
+						>
+							<?= $option['title'] ?>
+						</option>
+					<?php endforeach; ?>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Сортировать по:</td>
+			<td>
+				<select name="sort_order">
+					<?php foreach($sort_order_options as $option): ?>
+						<option 
+							value="<?= $option['value'] ?>" 
+							<?= $option['value'] == $sort_order ? 'selected' : '' ?>
+						>
+							<?= $option['title'] ?>
+						</option>
+					<?php endforeach; ?>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td><input type="submit" value="Применить фильтр"></td>
+		</tr>
+	</table>
+</form>
+
 <?php 
 $zakupki = [];
 $zakupka_show_newtab = true;
 $zakupka_show_details = false;
 
 if(empty($_GET['id'])) {
-	foreach(R::findAll('favorite', ' order by created_at desc ') as $f) {
+	foreach(R::findAll('favorite', $sort_query) as $f) {
 		if(isset($is_archive)) {
 			$zakupka = R::findOne('tender', ' ending <= ? and id = ? ', [ date('Y-m-d H:i:s'), $f->tender_id ]);
 			if($zakupka) array_push($zakupki, $zakupka);
