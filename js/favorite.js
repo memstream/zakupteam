@@ -142,6 +142,7 @@ $(document).ready(function() {
 		$(et).find('.btn-minus').click(function() {
 			table.find('tbody:last-child tr:last-child').remove();
 			rebuildEvents(et, table);
+			recalcTable(et, table);
 		});
 	});
 });
