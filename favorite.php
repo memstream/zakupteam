@@ -81,7 +81,7 @@ if($sort_by == 'created_at') {
 		<tr>
 			<td>В порядке:</td>
 			<td>
-				<select name="sort_by">
+				<select name="sort_by" onchange="this.form.submit()">
 					<?php foreach($sort_by_options as $option): ?>
 						<option 
 							value="<?= $option['value'] ?>" 
@@ -96,7 +96,7 @@ if($sort_by == 'created_at') {
 		<tr>
 			<td>Сортировать по:</td>
 			<td>
-				<select name="sort_order">
+				<select name="sort_order" onchange="this.form.submit()">
 					<?php foreach($sort_order_options as $option): ?>
 						<option 
 							value="<?= $option['value'] ?>" 
@@ -107,9 +107,6 @@ if($sort_by == 'created_at') {
 					<?php endforeach; ?>
 				</select>
 			</td>
-		</tr>
-		<tr>
-			<td><input type="submit" value="Применить фильтр"></td>
 		</tr>
 	</table>
 </form>
